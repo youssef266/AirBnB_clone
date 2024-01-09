@@ -2,7 +2,7 @@
 import uuid
 from datetime import datetime
 
-dt_format = "%Y-%m-%d %H:%M:%S"
+dt_format = "%Y-%m-%dT%H:%M:%S"
 """
 till we finish the class
 """
