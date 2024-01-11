@@ -1,4 +1,5 @@
 #!/usr/bin/python3
+
 import uuid
 from datetime import datetime
 
@@ -8,14 +9,13 @@ till we finish the class
 
 
 class BaseModel:
-    
+
     """define the attributes and methods"""
     def __init__(self, *args, **kwargs):
         from models import storage
         """
         """
         if kwargs:
-            
             if "__class__" in kwargs:
                 del kwargs["__class__"]
             for key, value in kwargs.items():
@@ -45,9 +45,9 @@ class BaseModel:
             class name, and ISO-formatted date strings.
         """
         obj_dict = self.__dict__.copy()
-        obj_dict['__class__'] = self.__class__.__name__
         obj_dict['created_at'] = self.created_at.isoformat()
         obj_dict['updated_at'] = self.updated_at.isoformat()
+        obj_dict['__class__'] = self.__class__.__name__
 
         return obj_dict
 
