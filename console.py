@@ -50,6 +50,29 @@ class HBNBCommand(cmd.Cmd):
         else:
             print("** class name missing **")
             
+    def do_show(self, name):
+        args = name.split()
+        """
+        print string representation of an instance
+        """
+        if len(args) == 0:
+            print("** class name missing **")
+            return
+        if args[0] not in classes.keys():
+            print("** class doesn't exist **")
+            return
+        if len(args) < 2:
+            print("** instance id missing **")
+            return
+
+        storage.reload()
+        ob = storage.all()
+        key = f"{args[0]}.{args[1]}"
+        if key in ob:
+            print(str(ob[key]))
+        else:
+            print("** no instance found **")
+            
         
 
 
