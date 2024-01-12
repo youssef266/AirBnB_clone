@@ -14,7 +14,10 @@ from models.amenity import Amenity
 from models.review import Review
 
 
+
 class HBNBCommand(cmd.Cmd):
+    prompt = '(hbnb) '
+    
     classes = {
             'BaseModel': BaseModel,
             'User': User,
@@ -23,8 +26,8 @@ class HBNBCommand(cmd.Cmd):
             'Amenity': Amenity,
             'Place': Place,
             'Review': Review
-            }
-    prompt = '(hbnb) '
+        }
+    
 
     def do_quit(self, arg):
         """It is Quit command to exit the program"""
@@ -41,8 +44,8 @@ class HBNBCommand(cmd.Cmd):
     
     def do_create(self, name):
         if name:
-            if name in calsses.keys():
-                new = classes[name]()
+            if name in HBNBCommand.classes.keys():
+                new = HBNBCommand.classes[name]()
                 new.save()
                 print(new.id)
             else:
@@ -58,7 +61,7 @@ class HBNBCommand(cmd.Cmd):
         if len(args) == 0:
             print("** class name missing **")
             return
-        if args[0] not in classes.keys():
+        if args[0] not in HBNBCommand.classes.keys():
             print("** class doesn't exist **")
             return
         if len(args) < 2:
@@ -81,7 +84,7 @@ class HBNBCommand(cmd.Cmd):
         if len(args) == 0:
             print("** class name missing **")
             return
-        if args[0] not in classes.keys():
+        if args[0] not in HBNBCommand.classes.keys():
             print("** class doesn't exist **")
             return
         if len(args) < 2:
