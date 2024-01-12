@@ -16,14 +16,14 @@ from models.review import Review
 
 class HBNBCommand(cmd.Cmd):
     classes = {
-        "BaseModel": BaseModel,
-        "User": User,
-        "State": State,
-        "City": City,
-        "Amenity": Amenity,
-        "Place": Place,
-        "Review": Review
-    }
+            'BaseModel': BaseModel,
+            'User': User,
+            'State': State,
+            'City': City,
+            'Amenity': Amenity,
+            'Place': Place,
+            'Review': Review
+            }
     prompt = '(hbnb) '
 
     def do_quit(self, arg):
@@ -72,8 +72,31 @@ class HBNBCommand(cmd.Cmd):
             print(str(ob[key]))
         else:
             print("** no instance found **")
+
+    def do_destroy(self, name):
+        """
+        Delete an instance based on the class name and ID also changes are saved to the JSON file.
+        """
+        args = name.split()
+        if len(args) == 0:
+            print("** class name missing **")
+            return
+        if args[0] not in classes.keys():
+            print("** class doesn't exist **")
+            return
+        if len(args) < 2:
+            print("** instance id missing **")
+            return
+        storage.reload()
+        ob = storage.all()
+        key = f"{args[0]}.{args[1]}"
+        if key in ob:
+            del ob[key]
+            storage.save()
+        else:
+            print("** no instance found **")
             
-        
+    
 
 
 if __name__ == '__main__':

@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 
 """Define a class"""
+from models.user import User
 
 from models.base_model import BaseModel
 import json
@@ -8,6 +9,15 @@ import os
 
 
 class FileStorage:
+    classes = {
+            'BaseModel': BaseModel,
+            'User': User,
+            'State': State,
+            'City': City,
+            'Amenity': Amenity,
+            'Place': Place,
+            'Review': Review
+            }
 
     """
     FileStorage class for serializing and
