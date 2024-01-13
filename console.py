@@ -115,11 +115,7 @@ class HBNBCommand(cmd.Cmd):
             print(objl)
     
     def do_update(self, arg):
-        """Usage: update <class> <id> <attribute_name> <attribute_value> or
-       <class>.update(<id>, <attribute_name>, <attribute_value>) or
-       <class>.update(<id>, <dictionary>)
-        Update a class instance of a given id by adding or updating
-        a given attribute key/value pair or dictionary."""
+        """ """
         argl = arg.split()
         objdict = storage.all()
 
