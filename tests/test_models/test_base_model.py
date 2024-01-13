@@ -58,5 +58,8 @@ class TestBaseModel(unittest.TestCase):
         self.assertIsInstance(model_dict, dict)
         self.assertCountEqual(model_dict.keys(), given_keys)
         self.assertEqual(model_dict['__class__'], 'BaseModel')
+        
+if __name__ == '__main__':
+    unittest.main()
     
     
