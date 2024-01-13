@@ -39,10 +39,6 @@ class HBNBCommand(cmd.Cmd):
     def emptyline(self):
         """an command for Do nothing on an empty line"""
         pass
-
-    @classmethod
-    def count(cls):
-        return len(cls.instances)
     
     def do_create(self, name):
         if name:
