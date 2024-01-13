@@ -45,13 +45,14 @@ class BaseModel:
             class name, and ISO-formatted date strings.
         """
         obj_dict = self.__dict__.copy()
+        obj_dict['__class__'] = self.__class__.__name__
         obj_dict['created_at'] = obj_dict['created_at'].isoformat()
         obj_dict['updated_at'] = obj_dict['updated_at'].isoformat()
-        obj_dict['__class__'] = self.__class__.__name__
+        
 
         return obj_dict
 
     def __str__(self):
         """Custom string representation of the object"""
-        return ("[{}] ({}) {}".format(
-            self.__class__.__name__, self.id, self.__dict__))
+        return "[{}] ({}) {}".format(
+            self.__class__.__name__, self.id, self.__dict__)
