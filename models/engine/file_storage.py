@@ -10,7 +10,6 @@ from models.city import City
 from models.amenity import Amenity
 from models.review import Review
 import json
-import os
 
 
 class FileStorage:
@@ -60,10 +59,7 @@ class FileStorage:
         try:
             with open(self.__file_path, 'r') as file:
                 loaded_objects = json.load(file)
-                for key, o in loaded_objects.items():
-                    class_name, obj_id = key.split('.')
-                    class_obj = eval(class_name)
-                    obj_instance = class_obj(**o)
-                    self.__objects[key] = obj_instance
-        except FileNotFoundError:
+                for key in loaded_objects:
+                    self.__objects[key] = FileStorage.classes[loaded_objects[key]["__class__"]](**loaded_objects[key])
+        except Exception as e:
             pass
