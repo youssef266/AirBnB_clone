@@ -13,9 +13,10 @@ from models.city import City
 from models.amenity import Amenity
 from models.review import Review
 
+
 class HBNBCommand(cmd.Cmd):
     prompt = '(hbnb) '
-    
+
     classes = {
             'BaseModel': BaseModel,
             'User': User,
@@ -25,7 +26,6 @@ class HBNBCommand(cmd.Cmd):
             'Place': Place,
             'Review': Review
         }
-    
 
     def do_quit(self, arg):
         """It is Quit command to exit the program"""
@@ -39,7 +39,7 @@ class HBNBCommand(cmd.Cmd):
     def emptyline(self):
         """an command for Do nothing on an empty line"""
         pass
-    
+
     def do_create(self, name):
         if name:
             if name in HBNBCommand.classes.keys():
@@ -50,7 +50,7 @@ class HBNBCommand(cmd.Cmd):
                 print("** class doesn't exist **")
         else:
             print("** class name missing **")
-            
+
     def do_show(self, name):
         args = name.split()
         """
@@ -76,7 +76,8 @@ class HBNBCommand(cmd.Cmd):
 
     def do_destroy(self, name):
         """
-        Delete an instance based on the class name and ID also changes are saved to the JSON file.
+        Delete an instance based on the class name and ID
+        also changes are saved to the JSON file.
         """
         args = name.split()
         if len(args) == 0:
@@ -96,11 +97,13 @@ class HBNBCommand(cmd.Cmd):
             storage.save()
         else:
             print("** no instance found **")
+
     def do_all(self, arg):
-        """Prints all string representations of instances based on the class name.
-        
+        """Prints all string representations
+        of instances based on the class name.
         Usage: all [ClassName]
-        If ClassName is not provided, it prints all instances of the default class (BaseModel).
+        If ClassName is not provided, it prints all instances
+        of the default class (BaseModel).
         """
         arg_l = arg.split()
         if len(arg_l) > 0 and arg_l[0] not in HBNBCommand.classes:
@@ -113,7 +116,7 @@ class HBNBCommand(cmd.Cmd):
                 elif len(arg_l) == 0:
                     obj_l.append(obj.__str__())
             print(obj_l)
-    
+
     def do_update(self, arg):
         """ """
         arg_l = arg.split()
@@ -158,7 +161,6 @@ class HBNBCommand(cmd.Cmd):
                 else:
                     obj.__dict__[k] = v
         storage.save()
-
 
 
 if __name__ == '__main__':
