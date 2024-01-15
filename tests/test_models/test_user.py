@@ -27,5 +27,5 @@ class TestUser(unittest.TestCase):
         from models.base_model import BaseModel
         self.assertIsInstance(self.user, BaseModel)
         
-    if __name__ == '__main__':
-        unittest.main()
+if __name__ == '__main__':
+    unittest.main()
