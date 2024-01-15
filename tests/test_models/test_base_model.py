@@ -59,6 +59,16 @@ class TestBaseModel(unittest.TestCase):
         self.assertCountEqual(model_dict.keys(), given_keys)
         self.assertEqual(model_dict['__class__'], 'BaseModel')
         
+    def test_str_method(self):
+        """
+        Test the __str__() method
+        """
+        str_rep = str(self.a.to_dict())
+        self.assertIn(self.a.id, str_rep)
+        self.assertIn(self.a.__class__.__name__, str_rep)
+        self.assertIn(self.a.created_at.isoformat(), str_rep)
+        self.assertIn(self.a.updated_at.isoformat(), str_rep)
+        
 if __name__ == '__main__':
     unittest.main()
     
